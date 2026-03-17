@@ -3,18 +3,16 @@ from sqlalchemy.orm import sessionmaker, declarative_base
 from dotenv import load_dotenv
 import os
 
-load_dotenv()
+env = os.getenv("ENV", "local")
+load_dotenv(f".env.{env}")
 
-engine = create_engine(os.getenv("SUPABASE_URL"))
+engine = create_engine(os.getenv("DATABASE_URL"))
 SessionLocal = sessionmaker(bind=engine)
 Base = declarative_base()
 
 def get_db():
-
     db = SessionLocal()
-
     try:
         yield db
-
     finally:
         db.close()

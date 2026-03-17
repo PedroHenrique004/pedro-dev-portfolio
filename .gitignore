@@ -1,0 +1,87 @@
+# =================================
+# Python
+# =================================
+
+__pycache__/
+*.py[cod]
+*$py.class
+
+# distribuição / build
+build/
+dist/
+*.egg-info/
+.eggs/
+
+# ambiente virtual
+venv/
+.venv/
+env/
+
+# caches
+.pytest_cache/
+.mypy_cache/
+.coverage
+
+# logs
+*.log
+
+# =================================
+# Variáveis de ambiente
+# =================================
+
+.env
+.env.local
+.env.production
+.env.*.local
+
+# =================================
+# PostgreSQL
+# =================================
+
+# backups
+*.dump
+*.backup
+
+# dados persistidos (caso use volume local)
+postgres-data/
+db-data/
+
+# =================================
+# Containers
+# =================================
+
+podman-machine-default*
+
+# =================================
+# Node / React (frontend futuro)
+# =================================
+
+node_modules/
+dist/
+build/
+
+# caches
+.npm/
+.cache/
+
+# =================================
+# IDEs / Editores
+# =================================
+
+.vscode/
+.idea/
+
+# =================================
+# Sistema operacional
+# =================================
+
+# macOS
+.DS_Store
+
+# =================================
+# Arquivos temporários
+# =================================
+
+*.tmp
+*.swp
+*.swo
