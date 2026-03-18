@@ -5,7 +5,6 @@ from database import get_db
 from src.Profile.routes import router as profile_router
 
 app = FastAPI()
-app.include_router(profile_router)
 
 @app.get("/")
 def root():
@@ -15,3 +14,5 @@ def root():
 def health(db: Session = Depends(get_db)):
     db.execute(text("SELECT 1"))
     return {"status": "Banco conectado"}
+
+app.include_router(profile_router)
