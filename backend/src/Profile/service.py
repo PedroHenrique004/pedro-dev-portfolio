@@ -19,9 +19,9 @@ class ProfileService:
         if not existing:
             raise ValueError("Perfil não encontrado")
 
-        update_data = profile.model_dump(exclude_unset=True)
+        update_profile = profile.model_dump(exclude_unset=True)
 
-        if not update_data:
+        if not update_profile:
             raise ValueError("Nada pra ser atualizado")
 
         if profile.email and self.repository.verify_duplicated_email(profile.email):
@@ -31,17 +31,17 @@ class ProfileService:
         return self.repository.update(profile_id, profile)
 
     def get(self, profile_id: uuid.UUID):
-        data = self.repository.get(profile_id)
+        profile = self.repository.get(profile_id)
 
-        if not data:
+        if not profile:
             raise ValueError("Perfil não encontrado")
 
-        return data
+        return profile
 
     def delete(self, profile_id: uuid.UUID):
-        data = self.repository.get(profile_id)
+        profile = self.repository.get(profile_id)
 
-        if not data:
+        if not profile:
             raise ValueError("Perfil não encontrado")
 
         return self.repository.delete(profile_id)
