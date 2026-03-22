@@ -28,7 +28,7 @@ class ProfileService:
             if existing.email != profile.email:
                 raise ValueError("Email já está em uso")
 
-        return self.repository.update(profile_id, profile)
+        return self.repository.patch(profile_id, profile)
 
     def get(self, profile_id: uuid.UUID):
         profile = self.repository.get(profile_id)

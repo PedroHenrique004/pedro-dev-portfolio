@@ -19,7 +19,7 @@ class ProfileRepository:
 
         return data
     
-    def update(self, profile_id: uuid.UUID, profile: ProfilePatch) -> ProfileModel | None:
+    def patch(self, profile_id: uuid.UUID, profile: ProfilePatch) -> ProfileModel | None:
         data = self.db.scalar(select(ProfileModel).where(ProfileModel.id == profile_id))
 
         if not data:

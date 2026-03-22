@@ -20,13 +20,14 @@ def get_certificate_service(db: Session = Depends(get_db)):
 
 @router.post(
     "/create",
+    response_model=CertificateResponse,
     status_code=status.HTTP_201_CREATED,
     summary="Criar novo certificado"
 )
 def create_certificate(
     certificate: CertificateCreate,
     service: CertificateService = Depends(get_certificate_service)
-) -> CertificateResponse:
+):
     try:
         return service.create(certificate)
     except ValueError as e:
@@ -34,6 +35,7 @@ def create_certificate(
     
 @router.patch(
     "/{certificate_id}",
+    response_model=CertificateResponse,
     status_code=status.HTTP_200_OK,
     summary="Atualizar certificado"
 )
@@ -50,13 +52,14 @@ def updated_certificate(
     
 @router.get(
     "/{certificate_id}",
+    response_model=CertificateResponse,
     status_code=status.HTTP_200_OK,
     summary="Encontrar um certificado"
 )
 def get_certificate(
     certificate_id: uuid.UUID,
     service: CertificateService = Depends(get_certificate_service)
-) -> CertificateResponse:
+):
     try:
         return service.get(certificate_id)
     
