@@ -8,6 +8,10 @@ from src.Experience.routes import router as experience_router
 from src.Category.routes import router as category_router
 from src.Project.routes import router as project_router
 from src.Testimonial.routes import router as testimonial_router
+from src.ProfileTools.routes import router as profile_tools_router
+from src.Tools.routes import router as tools_router
+from src.ExperienceTools.routes import router as experience_tools_router
+from src.ProjectTools.routes import router as project_tools_router
 
 app = FastAPI()
 
@@ -26,3 +30,7 @@ app.include_router(experience_router)
 app.include_router(category_router)
 app.include_router(project_router)
 app.include_router(testimonial_router)
+app.include_router(profile_tools_router)
+app.include_router(tools_router)
+app.include_router(experience_tools_router)
+app.include_router(project_tools_router)
