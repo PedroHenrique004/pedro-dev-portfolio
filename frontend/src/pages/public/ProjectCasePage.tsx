@@ -243,23 +243,75 @@ export const ProjectCasePage = () => {
           <Typography sx={{ fontFamily: "'Instrument Serif', serif", fontSize: '3rem', color: palette.ink, mb: 4, textAlign: 'center' }}>
             App em Ação
           </Typography>
-          <Box sx={{ 
-            borderRadius: '8px', 
-            overflow: 'hidden', 
-            border: `1px solid ${palette.sand}`,
-            boxShadow: '0 20px 40px rgba(0,0,0,0.08)',
-            bgcolor: '#000'
-          }}>
-            <video 
-              src={project.video_url} 
-              controls 
-              muted 
-              autoPlay 
-              playsInline
-              loop
-              style={{ width: '100%', display: 'block', maxHeight: '70vh', objectFit: 'contain' }} 
-            />
-          </Box>
+          {(() => {
+            const url = project.video_url;
+            let embedUrl = null;
+            let isShort = false;
+            
+            if (url.includes('youtube.com/shorts/')) {
+              const id = url.split('youtube.com/shorts/')[1].split('?')[0];
+              embedUrl = `https://www.youtube.com/embed/${id}?autoplay=1&mute=1&loop=1&playlist=${id}`;
+              isShort = true;
+            } else if (url.includes('youtube.com/watch?v=')) {
+              const id = url.split('v=')[1].split('&')[0];
+              embedUrl = `https://www.youtube.com/embed/${id}?autoplay=1&mute=1&loop=1&playlist=${id}`;
+            } else if (url.includes('youtu.be/')) {
+              const id = url.split('youtu.be/')[1].split('?')[0];
+              embedUrl = `https://www.youtube.com/embed/${id}?autoplay=1&mute=1&loop=1&playlist=${id}`;
+            }
+
+            if (embedUrl) {
+              return (
+                <Box sx={{ 
+                  maxWidth: isShort ? '400px' : '1000px',
+                  mx: 'auto',
+                  borderRadius: '12px', 
+                  overflow: 'hidden', 
+                  border: `1px solid ${palette.sand}`,
+                  boxShadow: '0 20px 40px rgba(0,0,0,0.08)',
+                  bgcolor: '#000',
+                  position: 'relative',
+                  aspectRatio: isShort ? '9/16' : '16/9',
+                }}>
+                  <iframe 
+                    src={embedUrl}
+                    title="YouTube video player"
+                    frameBorder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    allowFullScreen
+                    style={{ 
+                      position: 'absolute',
+                      top: 0,
+                      left: 0,
+                      width: '100%', 
+                      height: '100%',
+                    }}
+                  />
+                </Box>
+              );
+            }
+
+            // Fallback para arquivo local (.mp4)
+            return (
+              <Box sx={{ 
+                borderRadius: '12px', 
+                overflow: 'hidden', 
+                border: `1px solid ${palette.sand}`,
+                boxShadow: '0 20px 40px rgba(0,0,0,0.08)',
+                bgcolor: '#000'
+              }}>
+                <video 
+                  src={url} 
+                  controls 
+                  muted 
+                  autoPlay 
+                  playsInline
+                  loop
+                  style={{ width: '100%', display: 'block', maxHeight: '70vh', objectFit: 'contain' }} 
+                />
+              </Box>
+            );
+          })()}
         </Box>
       )}
 
