@@ -235,7 +235,7 @@ export const ProjectCasePage = () => {
         </Typography>
       </Box>
 
-      <ProjectScrollytelling project={project} projectCase={fallbackCase} />
+      <ProjectScrollytelling projectCase={fallbackCase} />
 
       {/* Seção de Vídeo Demonstrativo */}
       {project.video_url && (

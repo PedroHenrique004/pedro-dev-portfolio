@@ -25,7 +25,7 @@ export interface ProjectWithTools extends Project {
 export interface ProjectCasePhase {
   title: string;
   content: string;
-  type: 'problem' | 'process' | 'solution' | 'result';
+  type: string;
 }
 
 export interface ProjectCase {

@@ -68,7 +68,7 @@ const PhaseSection: React.FC<{ phase: any; index: number; setActive: (idx: numbe
 /**
  * Editorial Scrollytelling for Project Case Studies
  */
-export const ProjectScrollytelling: React.FC<ProjectScrollytellingProps> = ({ projectCase, project }) => {
+export const ProjectScrollytelling: React.FC<ProjectScrollytellingProps> = ({ projectCase }) => {
   const [activePhase, setActivePhase] = useState(0);
 
   const phases = projectCase.phases;
