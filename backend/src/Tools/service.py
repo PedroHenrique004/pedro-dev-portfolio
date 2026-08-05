@@ -31,6 +31,10 @@ class ToolsService:
 
         return self.repository.patch(tool_id, tool)
 
+    
+    def get_all(self):
+        return self.repository.get_all()
+
     def get(self, tool_id: uuid.UUID):
         tool = self.repository.get(tool_id)
 

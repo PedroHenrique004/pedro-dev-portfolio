@@ -4,6 +4,7 @@ from database import get_db
 from .repository import CertificateRepository
 from .schema import CertificateCreate, CertificatePatch, CertificateResponse
 from .service import CertificateService
+from typing import List
 from starlette import status
 import uuid
 
@@ -15,8 +16,16 @@ router = APIRouter(
 def get_certificate_service(db: Session = Depends(get_db)):
     repository = CertificateRepository(db)
     service = CertificateService(repository)
-
     return service
+
+@router.get(
+    "/",
+    response_model=List[CertificateResponse],
+    status_code=status.HTTP_200_OK,
+    summary="Listar todos os certificados"
+)
+def get_all(service: CertificateService = Depends(get_certificate_service)):
+    return service.get_all()
 
 @router.post(
     "/create",

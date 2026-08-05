@@ -31,6 +31,10 @@ class CategoryService:
 
         return self.repository.patch(category_id, category)
 
+    
+    def get_all(self):
+        return self.repository.get_all()
+
     def get(self, category_id: uuid.UUID):
         category = self.repository.get(category_id)
 

@@ -32,6 +32,10 @@ class ProfileRepository:
         self.db.refresh(data)
         return data
     
+    
+    def get_all(self) -> list[ProfileModel]:
+        return list(self.db.scalars(select(ProfileModel)).all())
+
     def get(self, profile_id: uuid.UUID) -> ProfileModel | None:
         data = self.db.scalar(select(ProfileModel).where(ProfileModel.id == profile_id))
 

@@ -43,6 +43,9 @@ class CertificateRepository:
         
         return certificate
     
+    def get_all(self) -> list[CertificateModel]:
+        return list(self.db.scalars(select(CertificateModel).order_by(CertificateModel.display_order.asc())).all())
+    
     def delete(self, certificate_id: uuid.UUID) -> bool:
 
         certificate = self.db.scalar(select(CertificateModel).where(CertificateModel.id == certificate_id))

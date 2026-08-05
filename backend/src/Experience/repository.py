@@ -34,6 +34,10 @@ class ExperienceRepository:
         self.db.refresh(existing)
         return existing
 
+    
+    def get_all(self) -> list[ExperienceModel]:
+        return list(self.db.scalars(select(ExperienceModel)).all())
+
     def get(self, experience_id: uuid.UUID) -> ExperienceModel | None:
         data = self.db.scalar(select(ExperienceModel).where(ExperienceModel.id == experience_id))
 

@@ -1,3 +1,4 @@
+from typing import List
 import uuid
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
@@ -51,6 +52,16 @@ def update_profile(
   except ValueError as e:
       raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail=str(e))
   
+
+
+@router.get(
+    "/",
+    response_model=List[ProfileResponse],
+    status_code=status.HTTP_200_OK,
+    summary="Listar Profiles"
+)
+def get_all(service: ProfileService = Depends(get_profile_service)):
+    return service.get_all()
 
 @router.get(
     "/{profile_id}",

@@ -35,6 +35,10 @@ class TestimonialService:
 
         return self.repository.patch(testimonial_id, testimonial)
 
+    
+    def get_all(self):
+        return self.repository.get_all()
+
     def get(self, testimonial_id: uuid.UUID):
         testimonial = self.repository.get(testimonial_id)
 

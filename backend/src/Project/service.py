@@ -31,6 +31,10 @@ class ProjectService:
 
         return self.repository.patch(project_id, project)
 
+    
+    def get_all(self):
+        return self.repository.get_all()
+
     def get(self, project_id: uuid.UUID):
         project = self.repository.get(project_id)
 

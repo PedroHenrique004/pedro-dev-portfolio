@@ -36,6 +36,10 @@ class CategoryRepository:
 
         return data  
     
+    
+    def get_all(self) -> list[CategoryModel]:
+        return list(self.db.scalars(select(CategoryModel)).all())
+
     def get(self, category_id: uuid.UUID) -> CategoryModel | None:
 
         data = self.db.scalar(select(CategoryModel).where(CategoryModel.id == category_id))

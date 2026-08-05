@@ -1,5 +1,6 @@
 import uuid
 from sqlalchemy import ForeignKey
+import sqlalchemy
 from sqlalchemy.orm import Mapped, mapped_column
 from .base import BasicModel
 
@@ -14,3 +15,4 @@ class ToolsModel(BasicModel):
         ForeignKey('category.id', ondelete='RESTRICT'),
         nullable=False
     )
+    is_primary: Mapped[bool] = mapped_column(default=False, server_default=sqlalchemy.sql.expression.false())

@@ -1,3 +1,4 @@
+from typing import List
 import uuid
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
@@ -52,6 +53,16 @@ def update_testimonial(
     except ValueError as e:
         raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail=str(e))
 
+
+
+@router.get(
+    "/",
+    response_model=List[TestimonialResponse],
+    status_code=status.HTTP_200_OK,
+    summary="Listar Testimonials"
+)
+def get_all(service: TestimonialService = Depends(get_testimonial_service)):
+    return service.get_all()
 
 @router.get(
     "/{testimonial_id}",

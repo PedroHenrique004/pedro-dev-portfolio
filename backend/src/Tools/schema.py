@@ -8,6 +8,7 @@ class ToolsCreate(BaseModel):
     description: str | None = None
     image_url: str | None = None
     category_id: uuid.UUID
+    is_primary: bool = Field(default=False)
 
 
 class ToolsPatch(BaseModel):
@@ -15,6 +16,7 @@ class ToolsPatch(BaseModel):
     description: str | None = None
     image_url: str | None = None
     category_id: uuid.UUID | None = None
+    is_primary: bool | None = None
 
 
 class ToolsResponse(BaseModel):
@@ -25,5 +27,6 @@ class ToolsResponse(BaseModel):
     description: str | None = None
     image_url: str | None = None
     category_id: uuid.UUID
+    is_primary: bool
     created_at: datetime
     updated_at: datetime

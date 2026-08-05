@@ -27,6 +27,10 @@ class ExperienceService:
 
         return self.repository.patch(experience_id, experience)
 
+    
+    def get_all(self):
+        return self.repository.get_all()
+
     def get(self, experience_id: uuid.UUID):
         experience = self.repository.get(experience_id)
 

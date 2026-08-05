@@ -33,6 +33,10 @@ class ProjectRepository:
         self.db.refresh(existing)
         return existing
 
+    
+    def get_all(self) -> list[ProjectModel]:
+        return list(self.db.scalars(select(ProjectModel)).all())
+
     def get(self, project_id: uuid.UUID) -> ProjectModel | None:
         data = self.db.scalar(select(ProjectModel).where(ProjectModel.id == project_id))
 

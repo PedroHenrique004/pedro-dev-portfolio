@@ -1,3 +1,4 @@
+from typing import List
 import uuid
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
@@ -48,6 +49,16 @@ def update_category(
         return service.update(category_id, category)
     except ValueError as e:
         raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail=str(e))
+
+
+@router.get(
+    "/",
+    response_model=List[CategoryResponse],
+    status_code=status.HTTP_200_OK,
+    summary="Listar Categorys"
+)
+def get_all(service: CategoryService = Depends(get_category_service)):
+    return service.get_all()
 
 @router.get(
     "/{category_id}",

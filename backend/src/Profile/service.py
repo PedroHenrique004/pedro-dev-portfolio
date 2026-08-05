@@ -30,6 +30,10 @@ class ProfileService:
 
         return self.repository.patch(profile_id, profile)
 
+    
+    def get_all(self):
+        return self.repository.get_all()
+
     def get(self, profile_id: uuid.UUID):
         profile = self.repository.get(profile_id)
 

@@ -33,6 +33,10 @@ class ToolsRepository:
         self.db.refresh(existing)
         return existing
 
+    
+    def get_all(self) -> list[ToolsModel]:
+        return list(self.db.scalars(select(ToolsModel)).all())
+
     def get(self, tool_id: uuid.UUID) -> ToolsModel | None:
         data = self.db.scalar(select(ToolsModel).where(ToolsModel.id == tool_id))
 

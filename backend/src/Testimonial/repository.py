@@ -33,6 +33,10 @@ class TestimonialRepository:
         self.db.refresh(existing)
         return existing
 
+    
+    def get_all(self) -> list[TestimonialModel]:
+        return list(self.db.scalars(select(TestimonialModel)).all())
+
     def get(self, testimonial_id: uuid.UUID) -> TestimonialModel | None:
         data = self.db.scalar(select(TestimonialModel).where(TestimonialModel.id == testimonial_id))
 

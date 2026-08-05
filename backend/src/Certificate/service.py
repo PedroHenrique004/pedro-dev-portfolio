@@ -29,8 +29,9 @@ class CertificateService:
         if not updated_certificate:
             raise ValueError("Nada foi atualizado")
         
-        if self.repository.verify_duplicated_name(certificate.name):
-            raise ValueError("Esse nome já existe")
+        if "name" in updated_certificate and updated_certificate["name"] != existing.name:
+            if self.repository.verify_duplicated_name(updated_certificate["name"]):
+                raise ValueError("Esse nome já existe")
         
         return self.repository.patch(certificate_id, certificate)
     
@@ -42,6 +43,9 @@ class CertificateService:
             raise ValueError("Não existe certificado com esse id")
         
         return certificate
+    
+    def get_all(self):
+        return self.repository.get_all()
 
     def delete(self, certificate_id: uuid.UUID):
         
