@@ -13,11 +13,23 @@ config = context.config
 if config.config_file_name is not None:
     fileConfig(config.config_file_name)
 
-# add your model's MetaData object here
-# for 'autogenerate' support
-# from myapp import mymodel
-# target_metadata = mymodel.Base.metadata
-target_metadata = None
+import sys
+import os
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '../src')))
+
+from database import Base
+from models.project import ProjectModel
+from models.category import CategoryModel
+from models.certificate import CertificateModel
+from models.experience import ExperienceModel
+from models.profile import ProfileModel
+from models.testimonial import TestimonialModel
+from models.tools import ToolsModel
+from models.project_tools import ProjectToolsModel
+from models.experience_tools import ExperienceToolsModel
+from models.profile_tools import ProfileToolsModel
+
+target_metadata = Base.metadata
 
 # other values from the config, defined by the needs of env.py,
 # can be acquired:
@@ -38,7 +50,13 @@ async def run_migrations_online() -> None:
     and associate a connection with the context.
 
     """
-    connectable = create_async_engine(config.get_main_option("sqlalchemy.url"))
+    database_url = os.environ.get("DATABASE_URL") or config.get_main_option("sqlalchemy.url")
+    if database_url and database_url.startswith("postgres://"):
+        database_url = database_url.replace("postgres://", "postgresql+asyncpg://", 1)
+    elif database_url and database_url.startswith("postgresql://"):
+        database_url = database_url.replace("postgresql://", "postgresql+asyncpg://", 1)
+        
+    connectable = create_async_engine(database_url)
     async with connectable.connect() as connection:
         await connection.run_sync(run_migrations)
     await connectable.dispose()
