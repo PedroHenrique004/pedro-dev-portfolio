@@ -5,7 +5,7 @@ import { ProjectScrollytelling } from '../../features/projects/components/Projec
 import { ScrollProgress } from '../../shared/components';
 import { palette } from '../../shared/theme';
 import { useProjects } from '../../shared/api/hooks';
-import type { ProjectCase } from '../../features/projects/types';
+import type { ProjectCase, ProjectCasePhase } from '../../features/projects/types';
 
 export const ProjectCasePage = () => {
   const { slug } = useParams<{ slug: string }>();

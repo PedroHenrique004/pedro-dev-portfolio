@@ -12,7 +12,7 @@ export const ToolsGrid: React.FC = () => {
   const { data: categories, isLoading: isLoadingCat } = useCategories();
   const { data: tools, isLoading: isLoadingTools } = useTools();
 
-  const [selectedTool, setSelectedTool] = useState<{ name: string; description: string } | null>(null);
+  const [selectedTool, setSelectedTool] = useState<{ name: string; description: string | null } | null>(null);
 
   const displayCategories = categories || [];
   const displayTools = tools || [];
@@ -131,8 +131,8 @@ export const ToolsGrid: React.FC = () => {
       <Dialog 
         open={Boolean(selectedTool)} 
         onClose={() => setSelectedTool(null)}
-        PaperProps={{
-          sx: {
+        sx={{
+          '& .MuiDialog-paper': {
             backgroundColor: palette.paper,
             borderRadius: '8px',
             maxWidth: '600px',

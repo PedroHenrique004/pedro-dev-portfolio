@@ -121,7 +121,7 @@ export const TextSphere: React.FC = () => {
       {words.map((word, i) => (
         <Typography
           key={i}
-          ref={(el: HTMLSpanElement | null) => itemsRef.current[i] = el}
+          ref={(el: HTMLSpanElement | null) => { itemsRef.current[i] = el; }}
           component="span"
           sx={{
             position: 'absolute',

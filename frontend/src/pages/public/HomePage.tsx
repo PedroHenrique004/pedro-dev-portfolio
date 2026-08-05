@@ -6,7 +6,7 @@ import { ProjectGrid } from '../../features/projects/components/ProjectGrid';
 import { ToolsGrid } from '../../features/tools/components/ToolsGrid';
 // import { TestimonialCarousel } from '../../features/testimonials/components/TestimonialCarousel';
 import { CertificateList } from '../../features/certificates/components/CertificateList';
-import { EditorialDivider, RainDivider, AnimatedReveal, SectionHeader } from '../../shared/components';
+import { AnimatedReveal, SectionHeader } from '../../shared/components';
 import { palette } from '../../shared/theme';
 import { mockProfile } from '../../features/profile/data/mockProfile';
 

@@ -57,8 +57,6 @@ export const TestimonialCarousel: React.FC = () => {
     );
   }
 
-  const currentTestimonial = displayTestimonials[currentIndex];
-
   return (
     <Box component="section" sx={{ px: { xs: 2, md: 4, lg: 8 }, py: 8 }}>
       <SectionHeader number="05" title="Depoimentos" />

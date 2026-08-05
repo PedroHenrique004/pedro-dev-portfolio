@@ -1,13 +1,11 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { Box, Typography } from '@mui/material';
-import { Link } from 'react-router-dom';
 import { AnimatedReveal } from '../../../shared/components';
 import { palette } from '../../../shared/theme';
-import type { ProjectWithTools, ProjectCase } from '../types';
+import type { ProjectCase } from '../types';
 
 interface ProjectScrollytellingProps {
   projectCase: ProjectCase;
-  project: ProjectWithTools;
 }
 
 const useIntersection = (ref: React.RefObject<HTMLDivElement | null>, options: IntersectionObserverInit) => {
